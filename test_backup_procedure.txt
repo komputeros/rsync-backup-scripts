@@ -1,0 +1,22 @@
+# Procedura testowa systemu backupu rsync
+
+1. Uruchom pull_backup_server.sh ręcznie i sprawdź:
+   - czy powstał katalog /backup/backup_YYYY-MM-DD
+   - czy latest → backup_YYYY-MM-DD
+   - czy pojawił się done.flag
+   - czy pliki są skopiowane z klienta
+
+2. Dzień później NIE uruchamiaj backupu (symuluj awarię)
+
+3. Następnie uruchom backup po przerwie i sprawdź:
+   - czy rotacja nadal działa logicznie (na podstawie dostępnych dat)
+
+4. Zmień dane źródłowe i wykonaj backup ponownie:
+   - sprawdź czy nowe pliki są kopiowane, a stare linkowane
+
+5. Sprawdź, czy:
+   - latest jest aktualizowany
+   - logi są dodane do /var/log/backup_rotation.log
+   - wiadomość e-mail została wysłana z załącznikiem logu
+
+✅ Gotowe!
